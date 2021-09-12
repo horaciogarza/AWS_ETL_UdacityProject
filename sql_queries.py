@@ -247,7 +247,7 @@ TIME_table_insert = ("""
 
 # QUERY LISTS
 
-create_table_queries = [events_stage_table_create, songs_stage_table_create, songplay_table_create, user_table_create, song_table_create, artist_table_create, TIME_table_create]
+create_table_queries = [events_stage_table_create,  songs_stage_table_create, user_table_create, artist_table_create,  song_table_create,  TIME_table_create, songplay_table_create]
 drop_table_queries = [events_stage_table_drop, songs_stage_table_drop, songplay_table_drop, user_table_drop, song_table_drop, artist_table_drop, TIME_table_drop]
 copy_table_queries = [events_stage_copy, songs_stage_copy]
 insert_table_queries = [songplay_table_insert, user_table_insert, song_table_insert, artist_table_insert, TIME_table_insert]
