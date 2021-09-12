@@ -37,7 +37,9 @@ events_stage_table_create= ("""CREATE TABLE IF NOT EXISTS events_stage
                                         status        INTEGER,  
                                         ts            BIGINT,
                                         userAgent     VARCHAR,
-                                        userId        INTEGER
+                                        userId        INTEGER,
+                                        
+                                        
                                     )
 """)
 
@@ -52,7 +54,9 @@ songs_stage_table_create = (""" CREATE TABLE IF NOT EXISTS songs_stage
                                         song_id             VARCHAR,
                                         title               VARCHAR,
                                         duration            DOUBLE PRECISION,
-                                        year                INTEGER
+                                        year                INTEGER,
+                                        primary key(artist_id),
+                                        foreign key(song_id) references songs(song_id)
                                     )
 """)
 
@@ -66,7 +70,11 @@ songplay_table_create = (""" CREATE TABLE songplays
                                     song_id       VARCHAR,
                                     session_id    VARCHAR,
                                     location      VARCHAR,
-                                    user_agent    VARCHAR
+                                    user_agent    VARCHAR,
+                                    primary key(songplay_id),
+                                    foreign key(user_id) references users(user_id),
+                                    foreign key(artist_id) references artists(artist_id),
+                                    foreign key(song_id) references songs(song_id)
                                 )
 """)
 
@@ -76,7 +84,8 @@ user_table_create = (""" CREATE TABLE users
                                 first_name    VARCHAR,
                                 last_name     VARCHAR, 
                                 gender        VARCHAR,
-                                level         VARCHAR 
+                                level         VARCHAR,
+                                primary key(user_id)
 
                             ) diststyle all
 """)
@@ -87,7 +96,9 @@ song_table_create = ("""    CREATE TABLE songs
                                     title         VARCHAR,
                                     artist_id     VARCHAR,
                                     year          INTEGER,
-                                    duration      DOUBLE PRECISION
+                                    duration      DOUBLE PRECISION,
+                                    primary key(song_id),
+                                    foreign key(artist_id) references listing(listid)
                                 )
 """)
 
@@ -97,7 +108,8 @@ artist_table_create = ("""  CREATE TABLE artists
                                     name          VARCHAR, 
                                     location      VARCHAR, 
                                     latitude      VARCHAR, 
-                                    longitude     VARCHAR
+                                    longitude     VARCHAR,
+                                    primary key(artist_id)
                                 ) diststyle all
 """)
 
